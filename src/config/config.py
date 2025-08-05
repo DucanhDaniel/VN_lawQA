@@ -1,0 +1,16 @@
+# config.py
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+LANGCHAIN_TRACING_V2 = os.getenv('LANGCHAIN_TRACING_V2')
+LANGCHAIN_ENDPOINT = os.getenv('LANGCHAIN_ENDPOINT')
+LANGCHAIN_API_KEY = os.getenv('LANGCHAIN_API_KEY')
+HUGGINGFACEHUB_API_TOKEN = os.getenv('HUGGINGFACEHUB_API_TOKEN')
+GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+LANGCHAIN_PROJECT = os.getenv('LANGCHAIN_PROJECT')
+
+EMBEDDING_MODEL_NAME = "models/gemini-embedding-exp-03-07"
+CHAT_MODEL_NAME = "gemini-2.0-flash"
+COLLECTION_NAME = "03082025"
