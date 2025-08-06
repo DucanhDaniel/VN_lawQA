@@ -62,7 +62,7 @@ class QAService:
             ]
         )
         
-        print(type(self.prompt))
+        # print(type(self.prompt))
     
         self.chat_history = []
 
