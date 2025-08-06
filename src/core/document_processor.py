@@ -3,7 +3,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 import glob 
 
 class DocumentProcessor:
-    def __init__(self, file_path = "data/", chunk_size = 1000, chunk_overlap = 20, length_function = len, 
+    def __init__(self, file_path = "data/", chunk_size = 1000, chunk_overlap = 200, length_function = len, 
                  verbose = False):
         self.text_splitter = RecursiveCharacterTextSplitter(
             chunk_size = chunk_size,
@@ -31,5 +31,5 @@ class DocumentProcessor:
     def get_splits(self):
         return self.splits
 
-test = DocumentProcessor()
-print(test.get_splits())
+# test = DocumentProcessor()
+# print(test.get_splits())

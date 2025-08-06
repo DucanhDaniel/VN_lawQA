@@ -20,7 +20,7 @@ class QAService:
 
         # create a retriever
         self.vectorstore = get_vectorstore()
-        self.retriever = self.vectorstore.as_retriever(search_kwargs = {"k": 2})
+        self.retriever = self.vectorstore.as_retriever(search_kwargs = {"k": SEARCH_COUNT})
 
         # create a history aware retriever
         contextualize_q_system_prompt = """
@@ -44,9 +44,25 @@ class QAService:
             self.llm, self.retriever, contextualize_q_prompt
         )
 
-        self.prompt = hub.pull("rlm/rag-prompt")
-
-
+        # self.prompt = hub.pull("rlm/rag-prompt")
+        system_prompt = (
+            "You are an assistant for question-answering tasks. "
+            "Use the following pieces of retrieved context to answer "
+            "the question. If you don't know the answer, say that you "
+            "don't know. Explain step by step if being asked."
+            "\n\n"
+            "{context}"
+        )
+        self.prompt = ChatPromptTemplate.from_messages(
+            [
+                ("system", system_prompt),
+                ("human", "{question}"),
+                ("system", "context: {context}"),
+                MessagesPlaceholder("chat_history"),
+            ]
+        )
+        
+        print(type(self.prompt))
     
         self.chat_history = []
 
